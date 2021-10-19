@@ -23,9 +23,7 @@ public class Answer {
 	public Integer getAnsId() {
 		return ansId;
 	}
-	/**
-	 * @param ansId the ansId to set
-	 */
+	
 	public void setAnsId(Integer ansId) {
 		this.ansId = ansId;
 	}

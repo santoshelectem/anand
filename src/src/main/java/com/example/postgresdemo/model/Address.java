@@ -25,9 +25,7 @@ public class Address {
 	private String addressLine1, city, state, country;
 	private Integer pincode;
 
-	/**
-	 * @return the getAddressId
-	 */
+	
 	public Integer getAddressId() {
 		return addressId;
 	}
@@ -99,5 +97,9 @@ public class Address {
 	}
 	/**
 	 * @return the employee
-	 */	
+	 */
+
+	
+
+	
 }
