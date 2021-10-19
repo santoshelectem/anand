@@ -21,10 +21,10 @@ import com.example.postgresdemo.service.BookService;
  @RestController
 @RequestMapping("/book")
 public class BookController {
-	//book controller
+	
 	@Autowired
 	private BookService bookService;
-
+	//savebebebebebebebebeb
 	@PostMapping("/save")
 	public Book createProduct(final @Valid @RequestBody Book book) {
 		return bookService.saveUpdate(book);

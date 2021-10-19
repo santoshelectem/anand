@@ -26,7 +26,7 @@ public class Address {
 	private Integer pincode;
 
 	/**
-	 * @return the addressId
+	 * @return the getAddressId
 	 */
 	public Integer getAddressId() {
 		return addressId;
@@ -99,9 +99,5 @@ public class Address {
 	}
 	/**
 	 * @return the employee
-	 */
-
-	
-
-	
+	 */	
 }

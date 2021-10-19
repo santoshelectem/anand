@@ -18,7 +18,7 @@ public class Answer {
 	private String answername;
 	private String postedBy;
 	/**
-	 * @return the ansId
+	 * @return the sadass
 	 */
 	public Integer getAnsId() {
 		return ansId;
