@@ -21,7 +21,7 @@ import com.example.postgresdemo.service.BookService;
  @RestController
 @RequestMapping("/book")
 public class BookController {
-
+	//book controller
 	@Autowired
 	private BookService bookService;
 
