@@ -25,7 +25,9 @@ public class Address {
 	private String addressLine1, city, state, country;
 	private Integer pincode;
 
-	
+	/**
+	 * @return the addressId
+	 */
 	public Integer getAddressId() {
 		return addressId;
 	}

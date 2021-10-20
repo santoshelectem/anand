@@ -30,7 +30,7 @@ import com.example.postgresdemo.repository.SemesterRepository;
 @RequestMapping("/student/semester")
 public class SemesterController {
 	
-	protected final static Logger log = LoggerFactory.getLogger(SemesterController.class);
+	static Logger log = LoggerFactory.getLogger(SemesterController.class);
 	/**
 	 * semesterRepository
 	 */
