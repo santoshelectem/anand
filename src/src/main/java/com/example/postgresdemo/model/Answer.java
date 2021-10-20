@@ -18,12 +18,14 @@ public class Answer {
 	private String answername;
 	private String postedBy;
 	/**
-	 * @return the sadass
+	 * @return the ansId
 	 */
 	public Integer getAnsId() {
 		return ansId;
 	}
-	
+	/**
+	 * @param ansId the ansId to set
+	 */
 	public void setAnsId(Integer ansId) {
 		this.ansId = ansId;
 	}
