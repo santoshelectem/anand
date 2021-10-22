@@ -22,6 +22,22 @@ import javax.persistence.OneToMany;
  * @author Cybertech1
  *
  */
+/**
+ * @author Cybertech1
+ *
+ */
+/**
+ * @author Cybertech1
+ *
+ */
+/**
+ * @author Cybertech1
+ *
+ */
+/**
+ * @author Cybertech1
+ *
+ */
 @Entity
 public class ProjectManager {
 	/**
@@ -43,18 +59,21 @@ public class ProjectManager {
 	 */
 	private String country;
 	
+	/**
+	 * ProjectManager to projects
+	 */
 	@ManyToMany(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.LAZY)
 	@JoinTable(name="project_Manager_project",
 		joinColumns = @JoinColumn(name="project_manager_FK", referencedColumnName="pid"),
 		inverseJoinColumns = @JoinColumn(name="project_FK", referencedColumnName="projectId"))
-	private List<Project> projects=new ArrayList<Project>(); 
+	private List<Project> projects=new ArrayList<>(); 
 	/**
 	 * @param pid
 	 * @param name
 	 * @param enailId
 	 * @param country
 	 */
-	public ProjectManager(final Integer pid,final  String name, final String enailId,final String country) {
+	public ProjectManager(final  String name, final String enailId,final String country) {
 		super();
 		this.pid = pid;
 		this.name = name;
@@ -139,7 +158,7 @@ public class ProjectManager {
 	/**
 	 * @param projects the projects to set
 	 */
-	public void setProjects(List<Project> projects) {
+	public void setProjects(final List<Project> projects) {
 		this.projects = projects;
 	}
 

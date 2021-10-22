@@ -29,7 +29,7 @@ public class MeasurandPanelService {
 	 * @return
 	 */
 	//creating the panel 
-	public MeasurandPanel savePanel(MeasurandPanel measurandPanel) {
+	public MeasurandPanel savePanel(final MeasurandPanel measurandPanel) {
 		// TODO Auto-generated method stub
 		return measuandPanelRepository.save(measurandPanel);
 	}
@@ -40,7 +40,7 @@ public class MeasurandPanelService {
 	 * @return
 	 */
 	//Updating thje panel
-	public ResponseEntity<MeasurandPanel> updatePanel(Integer panelId, @Valid MeasurandPanel measurandPanelUp) {
+	public ResponseEntity<MeasurandPanel> updatePanel(final Integer panelId, @Valid final MeasurandPanel measurandPanelUp) {
 		// TODO Auto-generated method stub
 		MeasurandPanel measurandPanel = measuandPanelRepository.findById(panelId)
 				.orElseThrow(() -> new ResourceNotFoundException("panel  not exist with id: " + panelId));
@@ -61,7 +61,7 @@ public class MeasurandPanelService {
 	 * @return
 	 */
 	//fetch by panel id
-	public MeasurandPanel fetchByPanelId(Integer panelId) 
+	public MeasurandPanel fetchByPanelId(final Integer panelId) 
 	{
 		// TODO Auto-generated method stub
 		return measuandPanelRepository.findById(panelId)

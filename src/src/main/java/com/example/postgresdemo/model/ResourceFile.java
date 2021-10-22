@@ -19,15 +19,27 @@ import org.hibernate.annotations.UpdateTimestamp;
  */
 @Entity
 public class ResourceFile {
+	/**
+	 * ResourceFile fileId
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer fileId;
 	
+	/**
+	 * ResourceFile name
+	 */
 	private String name;
 	
+	/**
+	 * ResourceFile
+	 */
 	@CreationTimestamp
 	private LocalDateTime createDate;
 
+	/**
+	 * ResourceFile updateDate
+	 */
 	@UpdateTimestamp
 	private LocalDateTime updateDate;
 
@@ -41,7 +53,7 @@ public class ResourceFile {
 	/**
 	 * @param fileId the fileId to set
 	 */
-	public void setFileId(Integer fileId) {
+	public void setFileId(final Integer fileId) {
 		this.fileId = fileId;
 	}
 
@@ -55,7 +67,7 @@ public class ResourceFile {
 	/**
 	 * @param createDate the createDate to set
 	 */
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(final LocalDateTime createDate) {
 		this.createDate = createDate;
 	}
 
@@ -69,7 +81,7 @@ public class ResourceFile {
 	/**
 	 * @param updateDate the updateDate to set
 	 */
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(final LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 
@@ -83,7 +95,7 @@ public class ResourceFile {
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 }

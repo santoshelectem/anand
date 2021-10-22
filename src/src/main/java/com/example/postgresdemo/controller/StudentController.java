@@ -34,7 +34,10 @@ import com.example.postgresdemo.repository.StudentRepository;
 @RequestMapping("/Student")
 public class StudentController {
 	
-protected final static Logger log = LoggerFactory.getLogger(StudentController.class);
+	/**
+	 * StudentController Logger
+	 */
+	private Logger log = LoggerFactory.getLogger(StudentController.class);
 	/**
 	 * studentRepository
 	 */
@@ -47,6 +50,7 @@ protected final static Logger log = LoggerFactory.getLogger(StudentController.cl
 	 */
 	@PostMapping("/Save")
 	public Student saveStudent(final @Valid @RequestBody Student student) {
+		log.info("start StudentController : saveStudent ");
 		try {
 			if (student != null) {
 				return studentRepository.save(student);
@@ -54,7 +58,7 @@ protected final static Logger log = LoggerFactory.getLogger(StudentController.cl
 		} catch (Exception e) {
 			log.error("Error n StudentController :: saveStudent" + e.getMessage());
 		}
-
+		log.info("end StudentController : saveStudent ");
 		return student;
 	}
 
@@ -64,14 +68,14 @@ protected final static Logger log = LoggerFactory.getLogger(StudentController.cl
 	@GetMapping("/student/all")
 	public List<Student> fetchStudent() {
 		log.info("Start of StudentController : fetchStudent ");
-		List<Student> student;
+		List<Student> student = null;
 		try {
 
 			student = studentRepository.findAll();
 
 		} catch (ResourceNotFoundException e) {
 			log.error("StudentController:fetchStudent" + e.getMessage());
-			throw new ResourceNotFoundException("error");
+			//throw new ResourceNotFoundException("error");
 		}
 		log.info("End StudentController:fetchStudent ");
 		return student;
@@ -84,14 +88,14 @@ protected final static Logger log = LoggerFactory.getLogger(StudentController.cl
 	@GetMapping("/student/by/{studentId}")
 	public Optional<Student> fetchStudentId(final @PathVariable Integer studentId) {
 		log.info("Start of StudentController : fetchStudentId : studentId:");
-		Optional<Student> student;
+		Optional<Student> student = null;
 		try {
 
 			student = studentRepository.findById(studentId);
 
 		} catch (ResourceNotFoundException e) {
 			log.error("StudentController: fetchStudentId" + e.getMessage());
-			throw new ResourceNotFoundException("se");
+			//throw new ResourceNotFoundException("se");
 		}
 		return student;
 	}
@@ -104,13 +108,14 @@ protected final static Logger log = LoggerFactory.getLogger(StudentController.cl
 	@PutMapping("/Student/{studentId}")
 	public ResponseEntity<Student> updateStudent(final @PathVariable Integer studentId,
 			final @RequestBody Student studentUpdate) {
+		log.info("Start of StudentController : updateStudent : studentId:");
 		final Student studentUpdat = studentRepository.findById(studentId)
 				.orElseThrow(() -> new ResourceNotFoundException("Student not exist with id: " + studentId));
 
 		studentUpdat.setCourse(studentUpdate.getCourse());
 		studentUpdat.setStuSubList(studentUpdate.getStuSubList());
 		studentRepository.save(studentUpdat);
-
+		log.info("end of StudentController : updateStudent : studentId:");
 		return ResponseEntity.ok(studentUpdat);
 	}
 
@@ -121,13 +126,14 @@ protected final static Logger log = LoggerFactory.getLogger(StudentController.cl
 	// deleting the student
 	@DeleteMapping("/student/{studentId}")
 	public ResponseEntity<HttpStatus> deleteStudent(final @PathVariable Integer studentId) {
-
+		log.info("Start of StudentController : deleteStudent : studentId:");
 		final Student student = studentRepository.findById(studentId)
 				.orElseThrow(() -> new ResourceNotFoundException("student not exist with id: " + studentId));
 
 		studentRepository.deleteStuSem(studentId);
 
 		studentRepository.delete(student);
+		log.info("end of StudentController : deleteStudent : studentId:");
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 	}

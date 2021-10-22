@@ -15,60 +15,81 @@ import javax.persistence.Id;
 @Entity
 public class Status {
 	/**
-	 * 
+	 * statusId
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer statusId;
+	/**
+	 * currentlyDoingCount
+	 */
 	private Integer currentlyDoingCount;
-	private	Integer completedCount;
+	/**
+	 * completedCount
+	 */
+	private Integer completedCount;
+	/**
+	 * 
+	 */
 	private Integer toDoCount;
+
 	/**
 	 * @return the statusId
 	 */
 	public Integer getStatusId() {
 		return statusId;
 	}
+
 	/**
-	 * @param statusId the statusId to set
+	 * @param statusId
+	 *            the statusId to set
 	 */
-	public void setStatusId(Integer statusId) {
+	public void setStatusId(final Integer statusId) {
 		this.statusId = statusId;
 	}
+
 	/**
 	 * @return the currentlyDoingCount
 	 */
 	public Integer getCurrentlyDoingCount() {
 		return currentlyDoingCount;
 	}
+
 	/**
-	 * @param currentlyDoingCount the currentlyDoingCount to set
+	 * @param currentlyDoingCount
+	 *            the currentlyDoingCount to set
 	 */
-	public void setCurrentlyDoingCount(Integer currentlyDoingCount) {
+	public void setCurrentlyDoingCount(final Integer currentlyDoingCount) {
 		this.currentlyDoingCount = currentlyDoingCount;
 	}
+
 	/**
 	 * @return the completedCount
 	 */
 	public Integer getCompletedCount() {
 		return completedCount;
 	}
+
 	/**
-	 * @param completedCount the completedCount to set
+	 * @param completedCount
+	 *            the completedCount to set
 	 */
-	public void setCompletedCount(Integer completedCount) {
+	public void setCompletedCount(final Integer completedCount) {
 		this.completedCount = completedCount;
 	}
+
 	/**
 	 * @return the toDoCount
 	 */
 	public Integer getToDoCount() {
 		return toDoCount;
 	}
+
 	/**
-	 * @param toDoCount the toDoCount to set
+	 * @param toDoCount
+	 *            the toDoCount to set
 	 */
-	public void setToDoCount(Integer toDoCount) {
+	public void setToDoCount(final Integer toDoCount) {
 		this.toDoCount = toDoCount;
 	}
 

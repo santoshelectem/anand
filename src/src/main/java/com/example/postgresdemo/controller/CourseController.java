@@ -36,7 +36,7 @@ public class CourseController {
 	/**
 	 * Logger
 	 */
-	Logger log = LoggerFactory.getLogger(CourseController.class);
+	static private Logger log = LoggerFactory.getLogger(CourseController.class);
 
 	/**
 	 * courseRepository
@@ -50,16 +50,16 @@ public class CourseController {
 	 */
 	@PostMapping("/Save")
 	public Course saveCourse(final @Valid @RequestBody Course course) {
+		log.info("Start of CourseController :: saveCourse ");
 		try {
 			if (course != null) {
 				return courseRepository.save(course);
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
-			log.error("CourseController: saveCourse" + e.getMessage());
-
+			log.error("CourseController :: saveCourse" + e.getMessage());
 		}
+		log.info("end of CourseController :: saveCourse ");
 		return course;
 	}
 
@@ -68,13 +68,14 @@ public class CourseController {
 	 */
 	@GetMapping("/get/all")
 	public List<Course> fetchCourse() {
-		final List<Course> course;
+		log.info("Start of CourseController :: fetchCourse ");
+		List<Course> course = null;
 		try {
 			course = courseRepository.findAll();
 		} catch (ResourceNotFoundException e) {
-			log.error("CourseController: fetchCourse" + e.getMessage());
-			throw new ResourceNotFoundException("error");
+			log.error("CourseController ::  fetchCourse " + e.getMessage());
 		}
+		log.info("end of CourseController :: fetchCourse ");
 		return course;
 	}
 
@@ -83,18 +84,18 @@ public class CourseController {
 	 * @return
 	 */
 	@GetMapping("/course/{courseId}")
-	public Optional<Course> fetchCourseId(final @PathVariable Integer courseId) {
+	public Optional<Course> fetchCourseById(final @PathVariable Integer courseId) {
+		log.info("Start of CourseController :: fetchCourseId ");
 		Optional<Course> course = null;
-
 		try {
 			if (courseId != null) {
 				course = courseRepository.findById(courseId);
 			}
 
 		} catch (ResourceNotFoundException e) {
-			log.error("CourseController: fetchCourseId" + e.getMessage());
-			throw new ResourceNotFoundException("se");
+			log.error("CourseController :: fetchCourseId" + e.getMessage());
 		}
+		log.info("end of CourseController :: fetchCourseId ");
 		return course;
 	}
 
@@ -104,15 +105,18 @@ public class CourseController {
 	 * @return updating the course
 	 */
 	@PutMapping("/course/{courseId}")
-	public ResponseEntity<Course> updatecource(final @PathVariable Integer courseId,
+	public ResponseEntity<Course> updateCource(final @PathVariable Integer courseId,
 			final @RequestBody Course courseUpdate) {
-		final Course courseUpdat = courseRepository.findById(courseId)
-				.orElseThrow(() -> new ResourceNotFoundException("Course not exist with id: " + courseId));
-
-		courseUpdat.setStuCourceList(courseUpdate.getStuCourceList());
+		log.info("Start of CourseController :: updateCource ");
+		final Course courseUpdat = courseRepository.findById(courseId).orElseThrow(()
+				-> new ResourceNotFoundException("Course not exist with id: " + courseId));
+		final List<Student> stuCourceList = courseUpdate.getStuCourceList();
+		courseUpdat.setStuCourceList(stuCourceList);
 		courseUpdat.setSubjectList(courseUpdate.getSubjectList());
 		courseRepository.save(courseUpdat);
+		log.info("end of CourseController :: updateCource ");
 		return ResponseEntity.ok(courseUpdat);
+
 	}
 
 }

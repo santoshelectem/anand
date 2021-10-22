@@ -111,7 +111,7 @@ public class Semester {
 	/**
 	 * @param subjectCourse the subjectCourse to set
 	 */
-	public void setSubjectCourse(List<Course> subjectCourse) {
+	public void setSubjectCourse(final List<Course> subjectCourse) {
 		this.subjectCourse = subjectCourse;
 	}
 

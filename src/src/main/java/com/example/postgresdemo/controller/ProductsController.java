@@ -24,15 +24,26 @@ import com.example.postgresdemo.service.ProductsService;
 @RequestMapping("/api/products")
 public class ProductsController {
 	
+	/**
+	 * 
+	 */
 	@Autowired
 	private ProductsService productsSerevice;
 	
+	/**
+	 * saveProducts
+	 * @param products
+	 * @return
+	 */
 	@PostMapping("/save")
 	public Products saveProducts(final @Valid @RequestBody Products products)
 	{
 		return productsSerevice.saveProduc(products);
 		
 	}
+	/**
+	 * @param pId
+	 */
 	@DeleteMapping("/delete/{pId}")
 	public void deleteProduct(final @PathVariable(value = "pId") Integer pId) 
 	{

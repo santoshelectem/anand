@@ -19,31 +19,52 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Task {
+	/**
+	 * taskId
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer taskId;
+	/**
+	 * Task name
+	 */
 	private String name;
+	/**
+	 * status
+	 */
 	private String status;
+	
+	/**
+	 * colourResult
+	 */
+	private String colourResult;
+	/**
+	 * createdDate
+	 */
+	private String createdDate;
+	/**
+	 * completedDate
+	 */
+	private String completedDate;
+	
+	/**
+	 * task to developer
+	 */
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="developerId")
+	private Developer developer;
 	/**
 	 * @param createdDate the createdDate to set
 	 */
-	public void setCreatedDate(String createdDate) {
+	public void setCreatedDate(final String createdDate) {
 		this.createdDate = createdDate;
 	}
 	/**
 	 * @param completedDate the completedDate to set
 	 */
-	public void setCompletedDate(String completedDate) {
+	public void setCompletedDate(final String completedDate) {
 		this.completedDate = completedDate;
 	}
-	private String colourResult;
-	private String createdDate;
-	private String completedDate;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="developerId")
-	private Developer developer;
-	
 	
 	/**
 	 * @return the taskId
@@ -54,7 +75,7 @@ public class Task {
 	/**
 	 * @param taskId the taskId to set
 	 */
-	public void setTaskId(Integer taskId) {
+	public void setTaskId(final Integer taskId) {
 		this.taskId = taskId;
 	}
 	/**
@@ -66,7 +87,7 @@ public class Task {
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	/**
@@ -78,7 +99,7 @@ public class Task {
 	/**
 	 * @param developer the developer to set
 	 */
-	public void setDeveloper(Developer developer) {
+	public void setDeveloper(final Developer developer) {
 		this.developer = developer;
 	}
 	/**
@@ -90,7 +111,7 @@ public class Task {
 	/**
 	 * @param colourResult the colourResult to set
 	 */
-	public void setColourResult(String colourResult) {
+	public void setColourResult(final String colourResult) {
 		this.colourResult = colourResult;
 	}
 	/**
@@ -102,7 +123,7 @@ public class Task {
 	/**
 	 * @param createdDate the createdDate to set
 	 */
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(final Date createdDate) {
 		this.createdDate = createdDate.toString();
 	}
 	/**
@@ -114,7 +135,7 @@ public class Task {
 	/**
 	 * @param completedDate the completedDate to set
 	 */
-	public void setCompletedDate(Date completedDate) {
+	public void setCompletedDate(final Date completedDate) {
 		this.completedDate = completedDate.toString();
 	}
 	
@@ -127,12 +148,12 @@ public class Task {
 	/**
 	 * @param status the status to set
 	 */
-	public void setStatus(String status) {
+	public void setStatus(final String status) {
 		this.status = status;
 	}
 	
 	/**
-	 * 
+	 * Task
 	 */
 	public Task() {
 		super();

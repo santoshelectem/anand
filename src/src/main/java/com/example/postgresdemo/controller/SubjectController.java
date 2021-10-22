@@ -34,48 +34,48 @@ import com.example.postgresdemo.repository.SubjectRepository;
 @RestController
 @RequestMapping("student/subject")
 public class SubjectController {
-	protected final static Logger log = LoggerFactory.getLogger(SubjectController.class);
+	private Logger log = LoggerFactory.getLogger(SubjectController.class);
 
 	/**
 	 * subjectRepository
 	 */
 	@Autowired
 	private SubjectRepository subjectRepository;
-	
+
 	/**
 	 * @param subject
 	 * @return
 	 */
 	@PostMapping("/Save")
 	public Subject saveSubject(final @Valid @RequestBody Subject subject) {
-
+		log.info("Start of SubjectController : saveSubject ");
 		try {
 			if (subject != null) {
 				return subjectRepository.save(subject);
 			}
-
 		} catch (Exception e) {
 			log.error("SubjectController: saveSubject" + e.getMessage());
-
 		}
+		log.info("end of SubjectController : saveSubject ");
 		return subject;
 	}
-	
+
 	/**
 	 * @param subjectId
 	 * @return
 	 */
 	@DeleteMapping("/subject/{subjectId}")
 	public ResponseEntity<HttpStatus> deleteSubject(final @PathVariable Integer subjectId) {
-
+		log.info("Start of SubjectController : deleteSubject ");
 		final Subject subject = subjectRepository.findById(subjectId)
 				.orElseThrow(() -> new ResourceNotFoundException("subject not exist with id: " + subjectId));
 
 		subjectRepository.delete(subject);
-
+		log.info("end of SubjectController : deleteSubject ");
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 	}
+
 	/**
 	 * @return
 	 */
@@ -92,6 +92,7 @@ public class SubjectController {
 		log.info("End SubjectController : fetch ");
 		return subject;
 	}
+
 	/**
 	 * @param subjectId
 	 * @return

@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,16 +31,21 @@ import com.example.postgresdemo.service.EmployeService;
  */
 @RestController
 public class EmployeeController {
-	//private static final Logger LOG = Logger.
+	/**
+	 * Logger
+	 */
+	private Logger log = LoggerFactory.getLogger(EmployeeController.class);
+	/**
+	 * employeeRepository
+	 */
 	@Autowired
-	private EmployeeRepository employeeRepository;
-	
+	private EmployeeRepository employRepostry;
+
 	/**
 	 * EmployeeController
 	 */
 	@Autowired
 	private EmployeService employeService;
-	
 
 	/**
 	 * @param employee
@@ -46,99 +53,103 @@ public class EmployeeController {
 	 */
 	@PostMapping("/employee")
 	public Employee saveEmployee(final @Valid @RequestBody Employee employee) {
-		return employeeRepository.save(employee);
+		log.info("Start of EmployeeController :: saveEmployee ");
+		Employee employe = null;
+		try {
+			if (employee != null) {
+				employe = employRepostry.save(employee);
+			}
+
+		} catch (Exception e) {
+			log.error("EmployeeController :: saveEmployee" + e.getMessage());
+			// TODO: handle exception
+		}
+		log.info("end of EmployeeController :: saveEmployee ");
+		return employe;
+
 	}
-	
-	
+
 	/**
 	 * fetch recod based on metric name and panelId
 	 */
 	@GetMapping("/employee")
 	public List<Employee> fetchEmployee() {
-		// LOG.info("Start of EmployeeController : fetchEmployee : employeeId
-		// :");
+		log.info("Start of EmployeeController :: fetchEmployee ");
 		List<Employee> employee = null;
 		try {
 
 			employee = employeService.fetchAllEmployees();
 
 		} catch (ResourceNotFoundException e) {
-			e.printStackTrace();
-			throw new ResourceNotFoundException("searchMetric");
+			log.error("EmployeeController :: fetchEmployee" + e.getMessage());
 		}
-		// LOG.info("End EmployeeController : fetchEmployee : employeeId :");
+		log.info("end of EmployeeController :: fetchEmployee ");
 		return employee;
 	}
-	
-	
+
 	/**
 	 * @param employeeRepository
 	 * @param employeService
 	 */
-	public EmployeeController(final EmployeeRepository employeeRepository,final  EmployeService employeService) {
+	public EmployeeController(final EmployeeRepository employRepstry, final EmployeService employeService) {
 		super();
-		this.employeeRepository = employeeRepository;
+		this.employRepostry = employRepstry;
 		this.employeService = employeService;
 	}
-
 
 	/**
 	 * @param employeeId
 	 * @return
 	 */
-	//fetch the data from database by employee Id
+	// fetch the data from database by employee Id
 	@GetMapping("/employee/{employeeId}")
 	public Employee fetchEmployeeId(final @PathVariable Long employeeId) {
-		// LOG.info("Start of EmployeeController : fetchEmployee : employeeId
-		// :");
+		log.info("Start of EmployeeController :: fetchEmployeeId ");
 		Employee employee = null;
 		try {
-
 			employee = employeService.fetchEmployeesById(employeeId);
-
 		} catch (ResourceNotFoundException e) {
-			throw new ResourceNotFoundException("searchMetric");
+			log.error("EmployeeController :: fetchEmployeeId" + e.getMessage());
 		}
-		// LOG.info("End EmployeeController : fetchEmployee : employeeId :");
+		log.info("end of EmployeeController :: fetchEmployeeId ");
 		return employee;
 	}
-	
-	
-	 /**
+
+	/**
 	 * @param employeeId
 	 * @return
 	 */
-	//delete data by id
+	// delete data by id
 	@DeleteMapping("/employee/{employeeId}")
-	    public ResponseEntity<HttpStatus> deleteEmployee(final @PathVariable long employeeId){
-
-	       final  Employee employee = employeeRepository.findById(employeeId)
-	                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + employeeId));
-
-	        employeeRepository.delete(employee);
-
-	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-	    }
-	 
-	   // build update employee REST API
-	    /**
-	     * @param employeeId
-	     * @param employeeDetails
-	     * @return
-	     */
-	    @PutMapping("/employee/{employeeId}")
-	    public ResponseEntity<Employee> updateEmployee(final @PathVariable long employeeId,
-			final @RequestBody Employee employeeDetails) {
-		final Employee updateEmployee = employeeRepository.findById(employeeId)
+	public ResponseEntity<HttpStatus> deleteEmployee(final @PathVariable long employeeId) {
+		log.info("Start of EmployeeController :: deleteEmployee ");
+		final Employee employee = employRepostry.findById(employeeId)
 				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + employeeId));
 
+		employRepostry.delete(employee);
+		log.info("end of EmployeeController :: deleteEmployee ");
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+	}
+
+	// build update employee REST API
+	/**
+	 * @param employeeId
+	 * @param employeeDetails
+	 * @return
+	 */
+	@PutMapping("/employee/{employeeId}")
+	public ResponseEntity<Employee> updateEmployee(final @PathVariable long employeeId,
+			final @RequestBody Employee employeeDetails) {
+		log.info("Start of EmployeeController :: updateEmployee ");
+		final Employee updateEmployee = employRepostry.findById(employeeId)
+				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + employeeId));
 		updateEmployee.setFirstName(employeeDetails.getFirstName());
 		updateEmployee.setLastName(employeeDetails.getLastName());
 		updateEmployee.setEmailId(employeeDetails.getEmailId());
 
-		employeeRepository.save(updateEmployee);
-
+		employRepostry.save(updateEmployee);
+		log.info("end of EmployeeController :: updateEmployee ");
 		return ResponseEntity.ok(updateEmployee);
 	}
 

@@ -42,7 +42,7 @@ public class Subject {
 	 */
 	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	@JoinTable(name = "subject_cource", joinColumns = @JoinColumn(name = "subject_FK", referencedColumnName = "subjectId"), inverseJoinColumns = @JoinColumn(name = "cource_FK", referencedColumnName = "courceId"))
-	private List<Course> subjectCouList = new ArrayList<Course>();
+	private List<Course> subjectCouList = new ArrayList<>();
 	
 	/**
 	 * Subject and Student
@@ -64,7 +64,7 @@ public class Subject {
 	 * @param semester
 	 *            the semester to set
 	 */
-	public void setSemester(Semester semester) {
+	public void setSemester(final Semester semester) {
 		this.semester = semester;
 	}
 
@@ -79,7 +79,7 @@ public class Subject {
 	 * @param subjectCouList
 	 *            the subjectCouList to set
 	 */
-	public void setSubjectCouList(List<Course> subjectCouList) {
+	public void setSubjectCouList(final List<Course> subjectCouList) {
 		this.subjectCouList = subjectCouList;
 	}
 
@@ -94,7 +94,7 @@ public class Subject {
 	/**
 	 * @param subjectId the subjectId to set
 	 */
-	public void setSubjectId(Integer subjectId) {
+	public void setSubjectId(final Integer subjectId) {
 		this.subjectId = subjectId;
 	}
 
@@ -108,7 +108,7 @@ public class Subject {
 	/**
 	 * @param subjectStudent the subjectStudent to set
 	 */
-	public void setSubjectStudent(List<Student> subjectStudent) {
+	public void setSubjectStudent(final List<Student> subjectStudent) {
 		this.subjectStudent = subjectStudent;
 	}
 
@@ -117,7 +117,7 @@ public class Subject {
 	 * @param semester
 	 * @param subjectCouList
 	 */
-	public Subject(Integer subjectId, Semester semester, List<Course> subjectCouList) {
+	public Subject(final Integer subjectId, final Semester semester, final List<Course> subjectCouList) {
 		super();
 		this.subjectId = subjectId;
 		this.semester = semester;
@@ -125,7 +125,7 @@ public class Subject {
 	}
 
 	/**
-	 * 
+	 * Subject
 	 */
 	public Subject() {
 		super();

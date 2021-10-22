@@ -19,13 +19,23 @@ import com.example.postgresdemo.repository.EmployeeRepository;
 @Service
 public class EmployeService {
 
+	/**
+	 * employeeRepository
+	 */
 	@Autowired
-	EmployeeRepository employeeRepository;
+	private EmployeeRepository employeeRepository;
 
+	/**
+	 * @return
+	 */
 	public List<Employee> fetchAllEmployees() {
 		return employeeRepository.findAll();
 	}
-	public Employee fetchEmployeesById(Long employeeId) {
+	/**
+	 * @param employeeId
+	 * @return
+	 */
+	public Employee fetchEmployeesById(final Long employeeId) {
 		Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + employeeId));
 		 return employee;

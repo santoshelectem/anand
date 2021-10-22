@@ -16,13 +16,22 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="addres")
+@Table(name = "addres")
 public class Address {
 
+	/**
+	 * addressId
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer addressId;
+	/**
+	 * addressLine1, city, state, country /**
+	 */
 	private String addressLine1, city, state, country;
+	/**
+	 * 
+	 */
 	private Integer pincode;
 
 	/**
@@ -31,77 +40,89 @@ public class Address {
 	public Integer getAddressId() {
 		return addressId;
 	}
+
 	/**
-	 * @param addressId the addressId to set
+	 * @param addressId
+	 *            the addressId to set
 	 */
-	public void setAddressId(Integer addressId) {
+	public void setAddressId(final Integer addressId) {
 		this.addressId = addressId;
 	}
+
 	/**
 	 * @return the addressLine1
 	 */
 	public String getAddressLine1() {
 		return addressLine1;
 	}
+
 	/**
-	 * @param addressLine1 the addressLine1 to set
+	 * @param addressLine1
+	 *            the addressLine1 to set
 	 */
-	public void setAddressLine1(String addressLine1) {
+	public void setAddressLine1(final String addressLine1) {
 		this.addressLine1 = addressLine1;
 	}
+
 	/**
 	 * @return the city
 	 */
 	public String getCity() {
 		return city;
 	}
+
 	/**
-	 * @param city the city to set
+	 * @param city
+	 *            the city to set
 	 */
-	public void setCity(String city) {
+	public void setCity(final String city) {
 		this.city = city;
 	}
+
 	/**
 	 * @return the state
 	 */
 	public String getState() {
 		return state;
 	}
+
 	/**
-	 * @param state the state to set
+	 * @param state
+	 *            the state to set
 	 */
-	public void setState(String state) {
+	public void setState(final String state) {
 		this.state = state;
 	}
+
 	/**
 	 * @return the country
 	 */
 	public String getCountry() {
 		return country;
 	}
+
 	/**
-	 * @param country the country to set
+	 * @param country
+	 *            the country to set
 	 */
-	public void setCountry(String country) {
+	public void setCountry(final String country) {
 		this.country = country;
 	}
+
 	/**
 	 * @return the pincode
 	 */
 	public Integer getPincode() {
 		return pincode;
 	}
+
 	/**
-	 * @param pincode the pincode to set
+	 * @param pincode
+	 *            the pincode to set
 	 */
-	public void setPincode(Integer pincode) {
+	public void setPincode(final Integer pincode) {
 		this.pincode = pincode;
 	}
-	/**
-	 * @return the employee
-	 */
-
 	
 
-	
 }

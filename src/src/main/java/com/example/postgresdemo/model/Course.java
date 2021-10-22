@@ -109,7 +109,7 @@ public class Course {
 	}
 
 	/**
-	 * 
+	 * Course
 	 */
 	public Course() {
 		super();

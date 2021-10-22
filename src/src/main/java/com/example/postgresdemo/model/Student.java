@@ -33,19 +33,22 @@ public class Student {
 	private Integer studentId;
 
 	/**
-	 * course
+	 * Student to course
 	 */
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "course_id", referencedColumnName = "courceId")
 	private Course course;
 
 	/**
-	 * stuSubList
+	 * Student to Subject
 	 */
 	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	@JoinTable(name = "Student_subject", joinColumns = @JoinColumn(name = "student_FK", referencedColumnName = "studentId"), inverseJoinColumns = @JoinColumn(name = "subject_FK", referencedColumnName = "subjectId"))
 	private List<Subject> stuSubList = new ArrayList<>();
 
+	/**
+	 * Student to Subject 
+	 */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "student_fk", referencedColumnName = "studentId")
 	private List<Subject> studSubjectList = new ArrayList<>();
@@ -106,7 +109,7 @@ public class Student {
 	 * @param studSubjectList
 	 *            the studSubjectList to set
 	 */
-	public void setStudSubjectList(List<Subject> studSubjectList) {
+	public void setStudSubjectList(final List<Subject> studSubjectList) {
 		this.studSubjectList = studSubjectList;
 	}
 

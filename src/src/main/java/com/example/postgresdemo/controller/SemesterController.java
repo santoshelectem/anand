@@ -27,21 +27,24 @@ import com.example.postgresdemo.repository.SemesterRepository;
  *
  */
 @RestController
-@RequestMapping("/student/semester")
+@RequestMapping("/api/sem")
 public class SemesterController {
-	
+
+	/**
+	 * log
+	 */
 	static Logger log = LoggerFactory.getLogger(SemesterController.class);
 	/**
 	 * semesterRepository
 	 */
 	@Autowired
 	private SemesterRepository semesterRepository;
-	
+
 	/**
 	 * @param semester
 	 * @return
 	 */
-	@PostMapping("/Save")
+	@PostMapping("/semester")
 	public Semester saveSemester(final @Valid @RequestBody Semester semester) {
 		log.info("start SemesterController : saveSemester ");
 		try {
@@ -57,20 +60,22 @@ public class SemesterController {
 		return semester;
 
 	}
-	
+
 	/**
 	 * @return
 	 */
-	@GetMapping("/get/all")
-	public List<Semester> fetch() {
+	@GetMapping("/semester")
+	public List<Semester> fetchSemester() {
+		log.info("start SemesterController : fetchSemester ");
 		List<Semester> semester;
 		try {
 			semester = semesterRepository.findAll();
 
 		} catch (ResourceNotFoundException e) {
-			log.error("SemesterController: fetch" + e.getMessage());
+			log.error("SemesterController: fetchSemester" + e.getMessage());
 			throw new ResourceNotFoundException("error");
 		}
+		log.info("End SemesterController : fetchSemester ");
 		return semester;
 	}
 

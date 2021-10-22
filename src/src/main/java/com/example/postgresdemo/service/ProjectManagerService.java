@@ -31,6 +31,9 @@ public class ProjectManagerService {
 	@Autowired
 	private ProjectManagerRepository projectManagerRepository;
 	
+	/**
+	 * developerRepository
+	 */
 	@Autowired
 	private DeveloperRepository developerRepository;
 	
@@ -58,7 +61,7 @@ public class ProjectManagerService {
 	 * @param managerDetails
 	 * @return
 	 */
-	public ResponseEntity<ProjectManager> updateManager(@PathVariable Integer pid, @RequestBody ProjectManager managerDetails) {
+	public ResponseEntity<ProjectManager> updateManager(@PathVariable final Integer pid, @RequestBody final ProjectManager managerDetails) {
 		ProjectManager updateManager = projectManagerRepository.findById(pid)
 				.orElseThrow(() -> new ResourceNotFoundException("product not exist with id: " + pid));
 
@@ -87,7 +90,7 @@ public class ProjectManagerService {
 	 */
 	public Developer developerLesTask() {
 		// TODO Auto-generated method stub
-		Developer developer = developerRepository.findDeveloperLesCount();
+		final Developer developer = developerRepository.findDeveloperLesCount();
 		return developer;
 	}
 }

@@ -13,7 +13,7 @@ import com.example.postgresdemo.model.FileStorageProperties;
     FileStorageProperties.class
 })
 public class PostgresDemoApplication {
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		SpringApplication.run(PostgresDemoApplication.class, args);
 	}
 }

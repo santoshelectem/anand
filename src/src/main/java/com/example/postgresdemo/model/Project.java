@@ -18,14 +18,26 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Project {
+	/**
+	 * projectId
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer projectId;
+	/**
+	 * name
+	 */
 	private String name;
+	/**
+	 * duration
+	 */
 	private String duration;
+	/**
+	 * Project to tasks
+	 */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "projectId")
-	List<Task> tasks=new ArrayList<>();
+	private List<Task> tasks=new ArrayList<>();
 	/**
 	 * @return the projectId
 	 */
@@ -36,7 +48,7 @@ public class Project {
 	/** 
 	 * @param projectId the projectId to set
 	 */
-	public void setProjectId(Integer projectId) {
+	public void setProjectId(final Integer projectId) {
 		this.projectId = projectId;
 	}
 
@@ -50,7 +62,7 @@ public class Project {
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -64,7 +76,7 @@ public class Project {
 	/**
 	 * @param duration the duration to set
 	 */
-	public void setDuration(String duration) {
+	public void setDuration(final String duration) {
 		this.duration = duration;
 	}
 
@@ -78,7 +90,7 @@ public class Project {
 	/**
 	 * @param tasks the tasks to set
 	 */
-	public void setTasks(List<Task> tasks) {
+	public void setTasks(final List<Task> tasks) {
 		this.tasks = tasks;
 	}
 }

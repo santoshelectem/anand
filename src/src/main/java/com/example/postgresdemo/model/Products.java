@@ -27,29 +27,45 @@ import org.hibernate.annotations.UpdateTimestamp;
  */
 @Entity
 public class Products {
+	/**
+	 * productId
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer pId;
+	/**
+	 * name
+	 */
 	private String name;
+	/**
+	 * createDate
+	 */
 	@CreationTimestamp
 	private LocalDateTime createDate;
 	 
+	/**
+	 * updateDate
+	 */
 	@UpdateTimestamp
 	private LocalDateTime updateDate;
+	/**
+	 * resources
+	 */
 	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH ,CascadeType.REMOVE}, fetch = FetchType.LAZY)
 	@JoinTable(name = "product_resources", joinColumns = @JoinColumn(name = "product_FK", referencedColumnName = "pId"), inverseJoinColumns = @JoinColumn(name = "resource_FK", referencedColumnName = "rId"))
 	private List<Resources> resources = new ArrayList<Resources>();
+	
 	/**
-	 * @return the pId
+	 * @return the productId
 	 */
-	public Integer getpId() {
+	public Integer getProductId() {
 		return pId;
 	}
 	/**
-	 * @param pId the pId to set
+	 * @param productId the productId to set
 	 */
-	public void setpId(Integer pId) {
-		this.pId = pId;
+	public void setProductId(final Integer productId) {
+		this.pId = productId;
 	}
 	/**
 	 * @return the name
@@ -60,7 +76,7 @@ public class Products {
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	/**
@@ -72,7 +88,7 @@ public class Products {
 	/**
 	 * @param createDate the createDate to set
 	 */
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(final LocalDateTime createDate) {
 		this.createDate = createDate;
 	}
 	/**
@@ -84,7 +100,7 @@ public class Products {
 	/**
 	 * @param updateDate the updateDate to set
 	 */
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(final LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 	/**
@@ -96,7 +112,7 @@ public class Products {
 	/**
 	 * @param projects the projects to set
 	 */
-	public void setResources(List<Resources> resources) {
+	public void setResources(final List<Resources> resources) {
 		this.resources = resources;
 	}
 	
